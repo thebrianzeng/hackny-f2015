@@ -10,7 +10,7 @@
 <div>
     <h2> {{ listing.name }} </h2> -- {{ listing.price }}
     <p> {{ listing.description }} </p>
-    <p> Contact {{ macros.user_email(listing.user) }} </p>
+    <a href="mailto:{{ listing.email }}?subject=Interested in {{ listing.name }}> Buy! </a>
 </div>
 {% endfor %}
 
