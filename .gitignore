@@ -1,5 +1,5 @@
 *.swo
 *.swp
 *.pyc
-
 db.db
+.vagrant/*
