@@ -24,8 +24,7 @@ db.create_all()
 
 @app.route('/')
 def home():
-    listings = Listing.query.options(joinedload("user")) \
-                            .filter(Listing.sold == False).all()
+    listings = Listing.query.filter(Listing.sold == False).all()
     return render_template("browse.html", listings=listings)
 
 #
