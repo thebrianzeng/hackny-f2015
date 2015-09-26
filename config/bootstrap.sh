@@ -18,8 +18,7 @@ apt-get install -y  python
 apt-get install -y  python-dev
 apt-get install -y  python-pip
 
-# Install MongoDB
-apt-get install -y  mongodb
+apt-get install -y sqlite3
 
 # Install requirements.txt
 pip install -r /vagrant/config/requirements.txt
