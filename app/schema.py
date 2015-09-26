@@ -14,7 +14,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     listings = db.relationship("Listing", backref="user", lazy="dynamic")
 
-    email = db.Column(db.String(80), unique=True)
+    email = db.Column(db.String(80), unique=True, nullable=False)
 
 class Listing(db.Model):
     __tablename__ = "listing"
@@ -23,6 +23,7 @@ class Listing(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
 
     price = db.Column(db.DECIMAL(precision=2, asdecimal=True), nullable=False)
+    name = db.Column(db.String(80), nullable=False)
     description = db.Column(db.String, nullable=False)
     sold = db.Column(db.Boolean, default=False, nullable=False)
 
