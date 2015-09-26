@@ -1,5 +1,4 @@
 from flask import Blueprint, request
-from
 
 listings = Blueprint('listings', __name__)
 
