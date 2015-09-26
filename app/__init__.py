@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, redirect
 from sqlalchemy.orm import joinedload
-import httplib2
+# import httplib2
 
-from oauth2client.client import OAuth2WebServerFlow
+# from oauth2client.client import OAuth2WebServerFlow
 
 app = Flask(__name__)
 
