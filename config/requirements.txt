@@ -3,3 +3,5 @@ flask-sqlalchemy
 gunicorn
 requests
 toolz
+oauth==1.0.1
+oauth2client==1.4.12
