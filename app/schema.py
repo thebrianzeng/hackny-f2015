@@ -24,3 +24,6 @@ class Listing(db.Model):
     price = db.Column(db.DECIMAL(precision=2, asdecimal=True), nullable=False)
     description = db.Column(db.String, nullable=False)
     sold = db.Column(db.Boolean, default=False, nullable=False)
+
+    def update(self, data):
+        pass
