@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 
-from app.schema import db, Listing 
+from app.schema import db, Listing
 
 listings = Blueprint('listings', __name__)
 
