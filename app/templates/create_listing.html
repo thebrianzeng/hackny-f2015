@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
 
-{% block 'content' %}
+{% block content %}
 
 <form action="/listings" method="POST">
-    <input name="price"/>
-    <input name="description"/>
-
+    <label for="name">Title</label>
+    <input id="name" name="name"/>
+    <label for="price">Price</label>
+    <input id="price" name="price"/>
+    <label for="description">Description</label>
+    <input id="description" name="description"/>
 </form>
 
 

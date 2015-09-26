@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, render_template
 
 from app.schema import db, Listing
 
@@ -16,6 +16,10 @@ def create_listing():
 
         return 'created_listing'
     return 'failed to create listing'
+
+@listings.route('/create')
+def create_listing_page():
+    return render_template('create_listing.html')
 
 
 @listings.route('/<int:listing_id>')
