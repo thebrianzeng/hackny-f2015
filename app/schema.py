@@ -3,6 +3,7 @@ from __future__ import print_function, division
 from flask_sqlalchemy import SQLAlchemy
 
 from app import app
+import utils
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///../db.db"
 db = SQLAlchemy(app)
@@ -26,4 +27,7 @@ class Listing(db.Model):
     sold = db.Column(db.Boolean, default=False, nullable=False)
 
     def update(self, data):
-        pass
+        columns = dict(Listing.__table__.columns)
+        columns = utils.exclude(["user_id", "id"], columns)
+
+        self.__dict__.update(utils.pick(columns, data))

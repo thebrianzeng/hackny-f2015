@@ -1,8 +1,9 @@
 from flask import Flask
 
-from routes import register_blueprints
-
 app = Flask(__name__)
+
+from schema import db
+from routes import register_blueprints
 
 register_blueprints(app)
 
