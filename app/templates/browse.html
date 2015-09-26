@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% import "macros.html" as macros %}
+
+{% block title %} Browse Listings {% endblock %}
+
+{% block content %}
+<h1> Listings </h1>
+
+{% for listing in listings %}
+<div>
+    <h2> {{ listing.name }} </h2> -- {{ listing.price }}
+    <p> {{ listing.description }} </p>
+    <p> Contact {{ macros.user_email(listing.user) }} </p>
+</div>
+{% endfor %}
+
+{% endblock %}
