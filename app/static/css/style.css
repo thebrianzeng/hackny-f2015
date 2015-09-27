@@ -57,7 +57,7 @@ a, a:hover {
 }
 
 .listing-list {
-	margin-top: 50px;
+	margin-top: -50px;
 }
 
 .listingName {
@@ -79,6 +79,7 @@ a, a:hover {
 
 .browse-listings-title {
 	top: -170px;
+	left: 25.5%;
 	position: relative;
 	color: white;
 	font-size: 72px;
@@ -103,7 +104,7 @@ a, a:hover {
 .banner-img {
 	height: 230px;
 	background-size: cover;
-	background-image: url(https://a2.muscache.com/airbnb/static/discovery/banner-image-6383f5c776f3794e320c967a547d946f.jpg);
+	background-image: url(/static/img/columbia_activities_fair.jpeg);
 	background-position: 0% 80%;
 	opacity: 0.5;
 }

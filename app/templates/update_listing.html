@@ -6,31 +6,32 @@
 <div class="dark-cover">
 	<div class="banner-img"></div>
 </div>
-<div class="container">
-    <h1 class="browse-listings-title">Update Your Listing</h1>
-</div>
+
+<h1 class="browse-listings-title">Update Your Listing</h1>
 
 <div id="content" class="container listing-list">
     <form action="/listings/{{ listing.id }}/update" method="POST">
         <label for="name">Title</label>
-        <input type="text" id="name" name="name" value="{{ listing.name }}"
+        <input class="form-control" type="text" id="name" name="name"
+               value="{{ listing.name }}"
                required/>
         <br>
         <div class="form-group">
             <label for="price">Price</label>
             <div class="input-group">
                 <div class="input-group-addon">$</div>
-                <input id="price" type="text" class="form-control"
+                <input id="price" type="text" name="price" class="form-control"
                 placeholder="Price" required>
             </div>
         </div>
         <br>
         <label for="description">Description</label>
-        <input type="text" id="description" name="description"
+        <input class="form-control" type="text" id="description" name="description"
                value="{{ listing.description }}" required/>
         <br>
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" value="{{ listing.email }}"/>
+        <input class="form-control" type="email" id="email" name="email"
+               value="{{ listing.email }}" required/>
         <br>
         <button class="button" type="submit">Update</button>
     </form>

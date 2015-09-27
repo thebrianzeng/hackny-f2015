@@ -7,10 +7,7 @@
 	<div class="banner-img"></div>
 </div>
 
-<div class="container">
-    <h1 class="browse-listings-title">Create Your
-    Listing</h1>
-</div>
+<h1 class="browse-listings-title">Create Your Listing</h1>
 
 <div id="content" class="container listing-list">
     <form action="/users/{{session['user_id']}}/listings/create" method="POST">
@@ -22,7 +19,7 @@
             <div class="input-group">
                 <div class="input-group-addon">$</div>
                 <input id="price" type="text" class="form-control"
-                placeholder="Price" required>
+                placeholder="Price" name="price" required>
             </div>
         </div>
         <br>
