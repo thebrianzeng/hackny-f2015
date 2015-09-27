@@ -7,7 +7,10 @@
 <div class="dark-cover">
 	<div class="banner-img"></div>
 </div>
-<h1 class="browse-listings-title">Your Listings.</h1>
+
+<div class="container">
+    <h1 class="browse-listings-title">Your Listings</h1>
+</div>
 <!--<div class="container">-->
 	<!--<div class="listing-list">-->
 		<!--<div id="content"></div>-->
@@ -15,16 +18,31 @@
 	<!--<script type="text/babel" src="/static/js/listing.js"></script>-->
 <!--</div>-->
 
-<div class="container">
-    <div class="listingsList">
-    {% for listing in listings %}
-    <div>
-        <h2> {{ listing.name }} </h2> {{ listing.price }}
-        <p> {{ listing.description }} </p>
-        <a href="#update"><span class="button">Update</span></a>
-        <a href="#delete"><span class="button">Delete</span></a>
-    </div>
-    {% endfor %}
+<div id="content">
+    <div class="container">
+        <div class="listing-list">
+        {% if listings %}
+        {% for listing in listings %}
+            <div class="listing">
+                <h2 class="listingName"> {{ listing.name }} </h2> 
+                <div class="listingPrice">${{ listing.price }}</div>
+                <div class="listingDescription">Description: {{ listing.description }}</div>
+                <div class="listingEmail">Contact: {{ listing.email }}</div>
+                <div class="listingButtons">
+                    <a href="/listings/{{ listing.id }}/complete"><span
+                            class="button">Complete</span></a>
+                    <a href="/listings/{{ listing.id }}/update"><span class="button">Update</span></a>
+                    <a href="/listings/{{ listing.id }}/delete"><span class="button">Delete</span></a>
+                </div>
+            </div>
+            <hr>
+        {% endfor %}
+        {% else %}
+        <h1 class="no-listings-header">You have no listings!</h1>
+        <a class="button" href="/listings/create"><span
+                >Create Listing</span></a>
+        {% endif %}
+        </div>
     </div>
 </div>
 

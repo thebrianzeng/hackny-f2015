@@ -17,7 +17,8 @@ def get_user(user_id):
 
 @users_blueprint.route('/<int:user_id>/listings')
 def get_user_listings(user_id):
-    listings = Listing.query.filter(Listing.user_id == user_id).all()
+    listings = Listing.query.filter(Listing.user_id == user_id).filter(
+        Listing.sold == False).all()
 
     return render_template('users_listings.html', listings=listings)
 

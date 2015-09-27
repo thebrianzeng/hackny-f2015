@@ -23,7 +23,7 @@ class Listing(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(User.id))
 
-    price = db.Column(db.DECIMAL(precision=2, asdecimal=True), nullable=False)
+    price = db.Column(db.String(50), nullable=False)
     name = db.Column(db.String(80), nullable=False)
     description = db.Column(db.String, nullable=False)
     sold = db.Column(db.Boolean, default=False, nullable=False)

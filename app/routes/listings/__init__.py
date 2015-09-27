@@ -32,15 +32,21 @@ def get_listing(listing_id):
     return 'found listing ' + listing.id
 
 
-@listings_blueprint.route('/<int:listing_id>/update', methods=['POST'])
+@listings_blueprint.route('/<int:listing_id>/update', methods=['GET', 'POST'])
 def update_listing(listing_id):
+    listing = Listing.query.get_or_404(listing_id)
     if request.method == 'POST':
-        listing = Listing.query.get_or_404(listing_id)
-        listing.update(request.form)
-        db.session.add(listing)
+        listing.price = request.form['price']
+        listing.description = request.form['description']
+        listing.name = request.form['name']
+        listing.email = request.form['email']
+
         db.session.commit()
-        return 'updated listing ' + listing_id
-    return 'failed to update listing'
+
+        redirect_path = '/users/' + str(listing.user_id) + '/listings'
+        return redirect(redirect_path)
+    else:
+        return render_template('update_listing.html', listing=listing)
 
 
 @listings_blueprint.route('/<listing_id>/delete')
@@ -48,23 +54,13 @@ def delete_listing(listing_id):
     listing = Listing.query.get_or_404(listing_id)
     db.session.delete(listing)
     db.session.commit()
-    return 'deleted listing ' + listing_id
-#
-#
-# @listings_blueprint.route('/<listing_id>/purchase', methods=['POST'])
-# def purchase_meal(listing_id):
-#     if request.method == 'POST':  # probably unnecessary
-#         transactions.handle_purchase(listing_id, request.form)
-#         # TODO: send a success response
-#         # TODO: Alert the seller
-#
-#
-# @listings_blueprint.route('/<listing_id>/complete')
-# def complete_transaction(listing_id):
-#     transactions.complete_transaction(listing_id)
-#
-#
-# @listings_blueprint.route('/test_stripe')
-# def test_stripe():
-#     transactions.test_stripe()
+    redirect_path = '/users/' + str(listing.user_id) + '/listings'
+    return redirect(redirect_path)
 
+@listings_blueprint.route('/<listing_id>/complete')
+def complete_listing(listing_id):
+    listing = Listing.query.get_or_404(listing_id)
+    listing.sold = True
+    db.session.commit()
+    redirect_path = '/users/' + str(listing.user_id) + '/listings'
+    return redirect(redirect_path)
