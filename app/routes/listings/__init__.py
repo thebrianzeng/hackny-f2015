@@ -1,11 +1,11 @@
-from flask import Blueprint, request, render_template
+from flask import Blueprint, request, render_template, redirect, jsonify
 
 from app.schema import db, Listing
 
-listings = Blueprint('listings', __name__)
+listings_blueprint = Blueprint('listings_blueprint', __name__)
 
 
-@listings.route('/', methods=['POST'])
+@listings_blueprint.route('/', methods=['GET', 'POST'])
 def create_listing():
     if request.method == 'POST':
         listing = Listing()
@@ -14,21 +14,25 @@ def create_listing():
         db.session.add(listing)
         db.session.commit()
 
-        return 'created_listing'
+        return redirect('/')
+    elif request.method == 'GET':
+        listings = Listing.query.filter(Listing.sold == False).all()
+        json_list = {'listings': [listing.serialize for listing in listings]}
+        return jsonify(json_list)
     return 'failed to create listing'
 
-@listings.route('/create')
+@listings_blueprint.route('/create/')
 def create_listing_page():
     return render_template('create_listing.html')
 
 
-@listings.route('/<int:listing_id>')
+@listings_blueprint.route('/<int:listing_id>')
 def get_listing(listing_id):
     listing = Listing.query.get_or_404(listing_id)
     return 'found listing ' + listing.id
 
 
-@listings.route('/<int:listing_id>/update', methods=['POST'])
+@listings_blueprint.route('/<int:listing_id>/update', methods=['POST'])
 def update_listing(listing_id):
     if request.method == 'POST':
         listing = Listing.query.get_or_404(listing_id)
@@ -39,7 +43,7 @@ def update_listing(listing_id):
     return 'failed to update listing'
 
 
-@listings.route('/<listing_id>/delete')
+@listings_blueprint.route('/<listing_id>/delete')
 def delete_listing(listing_id):
     listing = Listing.query.get_or_404(listing_id)
     db.session.delete(listing)
@@ -47,7 +51,7 @@ def delete_listing(listing_id):
     return 'deleted listing ' + listing_id
 #
 #
-# @listings.route('/<listing_id>/purchase', methods=['POST'])
+# @listings_blueprint.route('/<listing_id>/purchase', methods=['POST'])
 # def purchase_meal(listing_id):
 #     if request.method == 'POST':  # probably unnecessary
 #         transactions.handle_purchase(listing_id, request.form)
@@ -55,12 +59,12 @@ def delete_listing(listing_id):
 #         # TODO: Alert the seller
 #
 #
-# @listings.route('/<listing_id>/complete')
+# @listings_blueprint.route('/<listing_id>/complete')
 # def complete_transaction(listing_id):
 #     transactions.complete_transaction(listing_id)
 #
 #
-# @listings.route('/test_stripe')
+# @listings_blueprint.route('/test_stripe')
 # def test_stripe():
 #     transactions.test_stripe()
 

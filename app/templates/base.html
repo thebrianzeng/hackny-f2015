@@ -1,10 +1,45 @@
 <html>
 <head>
     <title> {% block title %} Listings {% endblock %} </title>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">	 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
-    {% block content %}
+	<div class="container">
+		{% block navbar %}
+		<nav class="navbar">
+			<span><h1 class="navbar-title">Marketplace</h1></span>
+			{% if not session['email'] %}
+			<a href="/oauth"><span class="button create-listing-button">Log
+                in</span></a>
+            <a href="/oauth"><span class="button create-listing-button">Sign
+                up</span></a>
+            {% else %}
+            <a href="/logout"><span class="button create-listing-button">Log
+                out </span></a>
+            <a href="/listings/create"><span
+                    class="button create-listing-button">Create Listing</span></a>
+            {% endif %}
+		</nav>
+		{% endblock %}
+	</div>
+	    {% block content %}
+	    {% endblock %}
+    </div>
+    {% block footer %}
+    <div class="container">
+	    <footer class="footer">
+	    	<h2>Built by Brian Zeng and Alan Du</h2>
+	    </footer>
+    </div>
     {% endblock %}
 </body>
 

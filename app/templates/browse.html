@@ -4,9 +4,18 @@
 {% block title %} Browse Listings {% endblock %}
 
 {% block content %}
-<h1> Listings </h1>
+<div class="dark-cover">
+	<div class="banner-img"></div>
+</div>
+<h1 class="browse-listings-title">Get what you need.</h1>
+<div class="container">
+	<div class="listing-list">
+		<div id="content"></div>
+	</div>
+	<script type="text/babel" src="/static/js/listing.js"></script>
+</div>
 
-{% for listing in listings %}
+<!-- {% for listing in listings %}
 <div>
     <h2> {{ listing.name }} </h2> -- {{ listing.price }}
     <p> {{ listing.description }} </p>
@@ -14,4 +23,5 @@
 </div>
 {% endfor %}
 
-{% endblock %}
+ -->
+ {% endblock %}

@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form action="/listings/" method="POST">
+<form action="/users/{{session['user_id']}}/listings/create" method="POST">
     <label for="name">Title</label>
     <input id="name" name="name"/>
     <label for="price">Price</label>
