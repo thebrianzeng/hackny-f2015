@@ -3,3 +3,4 @@
 *.pyc
 db.db
 .vagrant/*
+app/config/flask_config.py
