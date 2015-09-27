@@ -12,14 +12,16 @@ from schema import db, Listing, User
 from routes import register_blueprints
 from config import flask_config
 
-OAUTH_REDIRECT_URI = 'http://localhost:' + '5000' + \
-                     '/oauth2callback'
-
 flow = None
 
 app.config.from_object(flask_config)
 register_blueprints(app)
 db.create_all()
+
+if app.debug:
+    OAUTH_REDIRECT_URI = 'http://localhost:5000/oauth2callback'
+else:
+    OAUTH_REDIRECT_URI = 'http://marketplace.thebrianzeng.com/oauth2callback'
 
 SCOPES = 'https://www.googleapis.com/auth/userinfo.email'
 CLIENT_ID = app.config['CLIENT_ID']
